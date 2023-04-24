@@ -13,4 +13,11 @@
 *.gradle/
 .idea/
 .gradle/
+.DB_Store
+idea
+build
+
+/src/main/resources/application.yml
+
+# build 폴더의 모든 파일은 무시하되, build/generated-snippets 폴더는 포함
 build/
