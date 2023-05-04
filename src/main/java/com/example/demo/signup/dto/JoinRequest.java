@@ -27,7 +27,7 @@ public class JoinRequest {
         return User.builder()
                 .username(username)
                 .email(email)
-                .userId(userid)
+                .userid(userid)
                 .password(passwordEncoder.encode(password))
                 .role(Role.USER)
                 .build();

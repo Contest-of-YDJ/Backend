@@ -1,12 +1,9 @@
 package com.example.demo.signup.service;
 
 import com.example.demo.signup.dto.JoinRequest;
-import com.example.demo.signup.dto.UserDto;
-import com.example.demo.signup.entity.Role;
 import com.example.demo.signup.entity.User;
 import com.example.demo.signup.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +37,7 @@ public class SignUpServiceImpl implements SignUpService{
 
     @Transactional(readOnly = true)
     public User login(String userid, String password){
-        User entity = userRepository.findByUserId(userid).orElseThrow(()-> new IllegalArgumentException("Not Found Such User"));
+        User entity = userRepository.findByUserid(userid).orElseThrow(()-> new IllegalArgumentException("Not Found Such User"));
         if(passwordEncoder.matches(password, entity.getPassword()))
             return entity;
         else return null;

@@ -9,7 +9,7 @@ public class LoginResponse {
     private Long id;
     private String username;
     private String email;
-    private String userId;
+    private String userid;
     private String picture;
     private Role role;
     private String password;
@@ -19,7 +19,7 @@ public class LoginResponse {
         this.id = entity.getId();
         this.username = entity.getUsername();
         this.email = entity.getEmail();
-        this.userId = entity.getUserId();
+        this.userid = entity.getUserid();
         this.picture = entity.getPicture();
         this.role = entity.getRole();
         this.password = entity.getPassword();

@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 @Data
 @Builder
-@Table(name = "'user'")
+@Table(name = "user")
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -22,7 +22,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String userId;
+    private String userid;
 
     @Column(nullable = false)
     private String password;
@@ -35,10 +35,10 @@ public class User {
    private Role role;
 
    @Builder
-   public User(String email, String username, String userId, String password, String picture, Role role){
+   public User(String email, String username, String userid, String password, String picture, Role role){
        this.email = email;
        this.username = username;
-       this.userId = userId;
+       this.userid = userid;
        this.password = password;
        this.picture = picture;
        this.role = role;

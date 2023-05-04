@@ -5,16 +5,11 @@ import com.example.demo.response.SingleResponseData;
 import com.example.demo.signup.dto.JoinRequest;
 import com.example.demo.signup.dto.LoginRequest;
 import com.example.demo.signup.dto.LoginResponse;
-import com.example.demo.signup.dto.UserDto;
 import com.example.demo.signup.entity.User;
 import com.example.demo.signup.service.SignUpService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Objects;
 
 import static com.example.demo.jwt.JwtProperties.*;
 
@@ -31,6 +26,7 @@ public class SignUpController {
 //            return new ResponseEntity<>(HttpStatus.CREATED);
 //        }
 //        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        System.out.println("&&"+joinRequest.getUserid());
         return SingleResponseData.of(signUpService.join(joinRequest));
     }
 

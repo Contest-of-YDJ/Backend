@@ -2,6 +2,7 @@ package com.example.demo.jwt;
 
 import com.example.demo.signup.dto.LoginRequest;
 import com.example.demo.signup.entity.MyUserDetails;
+import com.example.demo.signup.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -38,12 +39,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         );
     }
 
-//    @Override //인증 성공
-//    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException{
-//        response.addHeader(
-//                HEADER_STRING,
-//                TOKEN_PREFIX + createJwtToken1((MyUserDetails) authResult.getPrincipal())
-//        );
-//    }
+    @Override //인증 성공
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException{
+        response.addHeader(
+                HEADER_STRING,
+                TOKEN_PREFIX + createJwtToken1((User) authResult.getPrincipal())
+        );
+    }
 
 }

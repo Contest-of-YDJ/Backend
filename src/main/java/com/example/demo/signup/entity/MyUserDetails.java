@@ -27,11 +27,11 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getUsername();
     }
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
