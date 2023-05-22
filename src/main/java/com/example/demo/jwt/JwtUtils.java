@@ -2,8 +2,7 @@ package com.example.demo.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.demo.signup.entity.MyUserDetails;
-import com.example.demo.signup.entity.User;
+import com.example.demo.user.entity.User;
 
 import java.util.Date;
 

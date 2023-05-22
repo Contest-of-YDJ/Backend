@@ -1,7 +1,7 @@
 package com.example.demo.jwt;
 
-import com.example.demo.signup.entity.MyUserDetails;
-import com.example.demo.signup.repository.UserRepository;
+import com.example.demo.user.entity.MyUserDetails;
+import com.example.demo.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

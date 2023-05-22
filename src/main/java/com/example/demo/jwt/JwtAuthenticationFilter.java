@@ -1,8 +1,7 @@
 package com.example.demo.jwt;
 
-import com.example.demo.signup.dto.LoginRequest;
-import com.example.demo.signup.entity.MyUserDetails;
-import com.example.demo.signup.entity.User;
+import com.example.demo.user.dto.LoginRequest;
+import com.example.demo.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
