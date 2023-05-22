@@ -2,6 +2,7 @@ package com.example.demo.board.service;
 
 import com.example.demo.board.dto.BoardListResponse;
 import com.example.demo.board.entity.Board;
+import com.example.demo.board.entity.BoardType;
 import com.example.demo.board.repository.BoardRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -51,4 +52,15 @@ public class BoardService {
                 .map(BoardListResponse::new)
                 .collect(Collectors.toList());
     }
+
+//    @Transactional(readOnly = true)
+//    public List<Board> findTop5(String boardType){
+//        BoardType type;
+//        if(boardType.equals("커뮤니티")){
+//            type = BoardType.community;
+//        }else if(boardType.equals("건의사항")){
+//            type = BoardType.post;
+//        } else { type=null; }
+//        return boardRepository.findTop5(type);
+//    }
 }

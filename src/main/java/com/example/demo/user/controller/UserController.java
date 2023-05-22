@@ -20,12 +20,8 @@ import static com.example.demo.jwt.JwtProperties.*;
 public class UserController {
     private final UserService signUpService;
 
-    @PostMapping("/join") // join으로 변경 건의
+    @PostMapping("/join")
     public SingleResponseData<Long> join(@RequestBody JoinRequest joinRequest){
-//        if(signUpService.join(userdto) > 0){
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return SingleResponseData.of(signUpService.join(joinRequest));
     }
 
