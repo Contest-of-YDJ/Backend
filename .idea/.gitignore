@@ -16,6 +16,10 @@
 .DB_Store
 idea
 build
+/.idea/*
+/out/*
+/.gradle/*
+/.build/*
 
 /src/main/resources/application.yml
 

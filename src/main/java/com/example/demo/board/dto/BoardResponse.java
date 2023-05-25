@@ -4,8 +4,6 @@ import com.example.demo.board.entity.Board;
 import com.example.demo.user.entity.User;
 import lombok.Getter;
 
-import java.util.Date;
-
 @Getter
 public class BoardResponse {
     private Long id;

@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/board/post")
+@RequestMapping("/board")
 public class BoardController {
     private final BoardService boardService;
+
+    @GetMapping("/")
+    public ListResponseData<BoardListResponse> all() { return ListResponseData.of(boardService.findAllDesc()); }
 
     @PostMapping
     public SingleResponseData<Long> save(@RequestBody BoardSaveRequest request){
@@ -31,7 +34,4 @@ public class BoardController {
         boardService.delete(id);
         return SingleResponseData.of(id);
     }
-
-    @GetMapping("/")
-    public ListResponseData<BoardListResponse> all() { return ListResponseData.of(boardService.findAllDesc()); }
 }

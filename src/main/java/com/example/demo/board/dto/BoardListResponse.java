@@ -2,7 +2,6 @@ package com.example.demo.board.dto;
 
 import com.example.demo.board.entity.Board;
 import com.example.demo.user.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
