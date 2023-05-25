@@ -10,6 +10,7 @@ import java.util.Date;
 public class BoardResponse {
     private Long id;
     private String title;
+
     private User username;
     private String content;
 
