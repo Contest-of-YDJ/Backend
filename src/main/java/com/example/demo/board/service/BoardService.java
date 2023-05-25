@@ -2,14 +2,12 @@ package com.example.demo.board.service;
 
 import com.example.demo.board.dto.BoardListResponse;
 import com.example.demo.board.entity.Board;
-import com.example.demo.board.entity.BoardType;
 import com.example.demo.board.repository.BoardRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +23,10 @@ public class BoardService {
     }
 
     @Transactional
-    public Long update(Long id, String title, String content){
+    public Long update(Long id, String title, String content, Date timestamp){
         boardRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("해당 게시글이 없습니다. id = "+id))
-                .update(title, content);
+                .update(title, content, timestamp);
         return id;
     }
 

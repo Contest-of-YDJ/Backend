@@ -26,7 +26,7 @@ public class BoardController {
 
     @PatchMapping("/{id}")
     public SingleResponseData<Long> update(@PathVariable Long id, @RequestBody BoardUpdateRequest request){
-        return SingleResponseData.of(boardService.update(id, request.getTitle(), request.getContent()));
+        return SingleResponseData.of(boardService.update(id, request.getTitle(), request.getContent(), request.getTimestamp()));
     }
 
     @DeleteMapping("/{id}")
