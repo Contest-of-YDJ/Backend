@@ -1,6 +1,6 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
@@ -16,6 +16,10 @@
 .DB_Store
 idea
 build
+/.idea/*
+/out/*
+/.gradle/*
+/.build/*
 
 /src/main/resources/application.yml
 

@@ -10,7 +10,7 @@ import java.util.Date;
 public class BoardResponse {
     private Long id;
     private String title;
-
+    private Date timestamp;
     private User username;
     private String content;
 
@@ -19,5 +19,6 @@ public class BoardResponse {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.username = entity.getUsername();
+        this.timestamp = entity.getTimestamp();
     }
 }
