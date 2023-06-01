@@ -25,7 +25,6 @@ public class JwtUtils {
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
                 .withClaim("username", user.getId())
-                .withClaim("role",user.getRole().name())
                 .sign(Algorithm.HMAC512(SECRET));
     }
 

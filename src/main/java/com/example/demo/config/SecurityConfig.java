@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.user.entity.Role;
+//import com.example.demo.user.entity.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -9,12 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     @Bean
@@ -31,7 +29,7 @@ public class SecurityConfig {
                 // 권한 설정
                 .authorizeRequests()
                 .requestMatchers("/","/css/**","/images/**","/js/**","/h2-console/**","/profile").permitAll()
-                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .requestMatchers("/api/v1/**").permitAll()//.hasRole(Role.USER.name())
                 // enable h2-console
                 .and()
                 .headers()

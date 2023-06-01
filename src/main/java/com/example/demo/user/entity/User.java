@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+@Getter
 @Builder
 @Table(name = "user")
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class User {
     @Id    // 내가 PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)	// 자동 id 생성
@@ -29,20 +29,20 @@ public class User {
    @Column
    private String picture;
 
-   @Enumerated(EnumType.STRING)
-   @Column
-   private Role role;
+//   @Enumerated(EnumType.STRING)
+//   @Column
+//   private Role role;
 
    @Builder
-   public User(String email, String username, String userid, String password, String picture, Role role){
+   public User(String email, String username, String userid, String password, String picture){
        this.email = email;
        this.username = username;
        this.userid = userid;
        this.password = password;
        this.picture = picture;
-       this.role = role;
+       //this.role = role;
    }
 
-   public String getRoleKey() { return this.role.getKey(); }
+   //public String getRoleKey() { return this.role.getKey(); }
 
 }

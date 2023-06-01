@@ -1,12 +1,11 @@
 package com.example.demo.user.dto;
 
-import com.example.demo.user.entity.Role;
+//import com.example.demo.user.entity.Role;
 import com.example.demo.user.entity.User;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 @Data
 @NoArgsConstructor
 public class JoinRequest {
@@ -29,7 +28,7 @@ public class JoinRequest {
                 .email(email)
                 .userid(userid)
                 .password(passwordEncoder.encode(password))
-                .role(Role.USER)
+                //.role(Role.USER)
                 .build();
     }
 }

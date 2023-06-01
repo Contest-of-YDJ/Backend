@@ -1,6 +1,6 @@
 package com.example.demo.board.entity;
 
-import com.example.demo.jwt.BaseTimeEntity;
+import com.example.demo.audit.AuditEntity;
 import com.example.demo.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Board extends BaseTimeEntity {
+public class Board extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
