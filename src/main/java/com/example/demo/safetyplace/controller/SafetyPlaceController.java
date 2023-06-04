@@ -2,6 +2,7 @@ package com.example.demo.safetyplace.controller;
 
 import com.example.demo.safetyplace.service.SafetyPlaceService;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +17,7 @@ public class SafetyPlaceController {
     private final SafetyPlaceService safetyPlaceService;
 
     @GetMapping("/open-api")
-    public void call()throws UnsupportedEncodingException {
+    public void call() throws UnsupportedEncodingException, ParseException {
         safetyPlaceService.findAll();
     }
 }

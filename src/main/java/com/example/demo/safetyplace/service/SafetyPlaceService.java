@@ -2,7 +2,12 @@ package com.example.demo.safetyplace.service;
 
 import com.example.demo.safetyplace.entity.SafetyPlace;
 import com.example.demo.safetyplace.repositroy.SafetyPlaceRepository;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -19,7 +24,7 @@ public class SafetyPlaceService {
     private final String serviceKey = "Infuser 9/gaTK+0+4IsgB43PG8bQtkz/UbkzJzw/N8PRL1ajzMOfsoa6l3zimjPL8d0ovIgoP9odKoqANhgzH0fgH5AfA==";
     private final String parameter = "?page=0&perPage=0";
 
-    public String findAll() {
+    public String findAll() throws ParseException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -30,7 +35,24 @@ public class SafetyPlaceService {
         ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
 
         String response = responseEntity.getBody();
-        System.out.println(response);
+        parse(response);
+
         return response;
+    }
+
+    public void parse(String apiData) throws ParseException {
+        JSONParser jsonParser = new JSONParser();
+        Object jsonObject = jsonParser.parse(apiData);
+        JSONObject jsonMain = (JSONObject) jsonObject;
+        JSONArray jsonArray = (JSONArray) jsonMain.get("data");
+
+        for(int i=0; i < jsonArray.size(); i++){
+            JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
+            System.out.println(i);
+            System.out.println((String) jsonObject1.get("공사장명"));
+            System.out.println((String) jsonObject1.get("노동지청명"));
+            System.out.println((String) jsonObject1.get("사업장명"));
+            System.out.println((String) jsonObject1.get("인정일"));
+        }
     }
 }
