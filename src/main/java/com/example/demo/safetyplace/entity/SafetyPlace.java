@@ -16,9 +16,6 @@ public class SafetyPlace {
     @Column(length = 100)
     private String factoryName;
 
-    @Column
-    private int businessCount;
-
     @Column(length = 50)
     private String businessManagePlace;
 
@@ -29,9 +26,8 @@ public class SafetyPlace {
     private String permitDay;
 
     @Builder
-    public SafetyPlace(String factoryName, int businessCount, String businessManagePlace, String businessName, String permitDay){
+    public SafetyPlace(String factoryName, String businessManagePlace, String businessName, String permitDay){
         this.factoryName = factoryName;
-        this.businessCount = businessCount;
         this.businessManagePlace = businessManagePlace;
         this.businessName = businessName;
         this.permitDay = permitDay;

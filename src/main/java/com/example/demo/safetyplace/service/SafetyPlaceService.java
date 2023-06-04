@@ -19,8 +19,11 @@ import java.net.URI;
 import java.util.Map;
 
 @Component
+@RequiredArgsConstructor
 public class SafetyPlaceService {
+    private final SafetyPlaceRepository safetyPlaceRepository;
     private final String apiUrl = "https://api.odcloud.kr/api/15002452/v1/uddi:4bc92095-bfa2-464f-8723-b65c6a336565";
+    //인증키는 따로 보관해서 안전하게 사용해야할듯
     private final String serviceKey = "Infuser 9/gaTK+0+4IsgB43PG8bQtkz/UbkzJzw/N8PRL1ajzMOfsoa6l3zimjPL8d0ovIgoP9odKoqANhgzH0fgH5AfA==";
     private final String parameter = "?page=0&perPage=0";
 
@@ -48,11 +51,13 @@ public class SafetyPlaceService {
 
         for(int i=0; i < jsonArray.size(); i++){
             JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
-            System.out.println(i);
-            System.out.println((String) jsonObject1.get("공사장명"));
-            System.out.println((String) jsonObject1.get("노동지청명"));
-            System.out.println((String) jsonObject1.get("사업장명"));
-            System.out.println((String) jsonObject1.get("인정일"));
+
+            String factoryName = (String) jsonObject1.get("공사장명");
+            String businessManagePlace = (String) jsonObject1.get("노동지청명");
+            String businessName = (String) jsonObject1.get("사업장명");
+            String permitDay = (String) jsonObject1.get("인정일");
+
+            safetyPlaceRepository.save(new SafetyPlace(factoryName, businessManagePlace, businessName, permitDay));
         }
     }
 }
