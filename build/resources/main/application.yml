@@ -13,5 +13,6 @@ spring:
     show-sql: true
     database: mysql
     generate-ddl: true
-
-
+  config:
+    import:
+      - config.yml
