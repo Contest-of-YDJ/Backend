@@ -1,6 +1,6 @@
 package com.example.demo.user.dto;
 
-import com.example.demo.user.entity.Role;
+//import com.example.demo.user.entity.Role;
 import com.example.demo.user.entity.User;
 import lombok.Getter;
 
@@ -11,7 +11,7 @@ public class LoginResponse {
     private String email;
     private String userid;
     private String picture;
-    private Role role;
+    //private Role role;
     private String password;
     private String jwtToken;
 
@@ -21,7 +21,7 @@ public class LoginResponse {
         this.email = entity.getEmail();
         this.userid = entity.getUserid();
         this.picture = entity.getPicture();
-        this.role = entity.getRole();
+        //this.role = entity.getRole();
         this.password = entity.getPassword();
         this.jwtToken = jwtToken;
     }

@@ -3,6 +3,7 @@ package com.example.demo.user.service;
 import com.example.demo.user.dto.JoinRequest;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(readOnly = true)
     public User login(String userid, String password){
-        User entity = userRepository.findByUserid(userid).orElseThrow(()-> new IllegalArgumentException("Not Found Such User"));
+        User entity = userRepository.findByUserid(userid).orElseThrow(()-> new EntityNotFoundException("Not Found Such User"));
         if(passwordEncoder.matches(password, entity.getPassword()))
             return entity;
         else return null;

@@ -1,4 +1,4 @@
-package com.example.demo.jwt;
+package com.example.demo.audit;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -11,8 +11,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
+//@Embeddable 로 리팩토링 시 에러 발생
 @EntityListeners(AuditingEntityListener.class)
-public class BaseTimeEntity {
+public class AuditEntity {
     @CreatedDate
     private LocalDateTime createdDate;
 
