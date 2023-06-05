@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface SafetyPlaceRepository extends JpaRepository<SafetyPlace, Long> {
     List<SafetyPlace> findBybusinessManagePlace(String keyword);
+
+    @Query("SELECT sb FROM SafetyPlace sb ORDER BY sb.id ASC")
+    List<SafetyPlace> findAllASC();
 }

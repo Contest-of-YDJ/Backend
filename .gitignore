@@ -20,7 +20,17 @@ build
 /.gradle/*
 /.build/*
 
+.gradle/7.6.1/executionHistory/executionHistory.bin
+.gradle/7.6.1/executionHistory/executionHistory.lock
+.gradle/7.6.1/fileHashes/fileHashes.bin
+.gradle/7.6.1/fileHashes/resourceHashesCache.bin
+.gradle/7.6.1/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+build/tmp/compileJava/previous-compilation-data.bin
+
 /src/main/resources/application.yml
 
 # build 폴더의 모든 파일은 무시하되, build/generated-snippets 폴더는 포함
 build/
+
+.gitignore

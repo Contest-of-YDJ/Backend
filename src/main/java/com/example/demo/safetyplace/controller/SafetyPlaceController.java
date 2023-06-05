@@ -1,6 +1,7 @@
 package com.example.demo.safetyplace.controller;
 
 import com.example.demo.response.ListResponseData;
+import com.example.demo.response.SingleResponseData;
 import com.example.demo.safetyplace.dto.SafetyPlaceResponseDto;
 import com.example.demo.safetyplace.service.SafetyPlaceService;
 import lombok.Getter;
@@ -20,8 +21,13 @@ public class SafetyPlaceController {
     private final SafetyPlaceService safetyPlaceService;
 
     @GetMapping("/open-api")
-    public void call() throws UnsupportedEncodingException, ParseException {
-        safetyPlaceService.findAll();
+    public ListResponseData<SafetyPlaceResponseDto> all(){
+        return ListResponseData.of(safetyPlaceService.findAllASC());
+    }
+
+    @GetMapping("/open-api/save")
+    public SingleResponseData<Long> save() throws UnsupportedEncodingException, ParseException {
+        return SingleResponseData.of(safetyPlaceService.save());
     }
 
     @GetMapping("/open-api/search")

@@ -1,5 +1,6 @@
 package com.example.demo.safetyplace.service;
 
+import com.example.demo.safetyplace.dto.SafetyPlaceResponseDto;
 import com.example.demo.safetyplace.entity.SafetyPlace;
 import com.example.demo.safetyplace.repositroy.SafetyPlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +30,7 @@ public class SafetyPlaceService {
     private final String parameter = "?page=0&perPage=0";
 
     @Transactional
-    public String findAll() throws ParseException {
+    public String save() throws ParseException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -65,5 +68,10 @@ public class SafetyPlaceService {
     @Transactional
     public List<SafetyPlace> search(String keyword){
         return safetyPlaceRepository.findBybusinessManagePlace(keyword);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SafetyPlace> findAllASC() {
+        return safetyPlaceRepository.findAllASC();
     }
 }
