@@ -9,11 +9,11 @@ public class SafetyPlaceResponseDto {
     private String businessName;
     private String permitDay;
 
-    public SafetyPlaceResponseDto(String factoryName, String businessManagePlace, String businessName, String permitDay) {
-        this.factoryName = factoryName;
-        this.businessManagePlace = businessManagePlace;
-        this.businessName = businessName;
-        this.permitDay = permitDay;
+    public SafetyPlaceResponseDto(SafetyPlace safetyPlace){
+        this.factoryName = safetyPlace.getFactoryName();
+        this.businessManagePlace = safetyPlace.getBusinessManagePlace();
+        this.businessName = safetyPlace.getBusinessName();
+        this.permitDay = safetyPlace.getPermitDay();
     }
 
     public SafetyPlace toEntity(){

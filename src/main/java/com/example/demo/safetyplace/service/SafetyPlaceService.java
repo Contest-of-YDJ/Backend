@@ -9,14 +9,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class SafetyPlaceService {
     private final SafetyPlaceRepository safetyPlaceRepository;
@@ -25,6 +26,7 @@ public class SafetyPlaceService {
     private String serviceKey;
     private final String parameter = "?page=0&perPage=0";
 
+    @Transactional
     public String findAll() throws ParseException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -41,6 +43,7 @@ public class SafetyPlaceService {
         return response;
     }
 
+    @Transactional
     public void parse(String apiData) throws ParseException {
         JSONParser jsonParser = new JSONParser();
         Object jsonObject = jsonParser.parse(apiData);
@@ -57,5 +60,10 @@ public class SafetyPlaceService {
 
             safetyPlaceRepository.save(new SafetyPlace(factoryName, businessManagePlace, businessName, permitDay));
         }
+    }
+
+    @Transactional
+    public List<SafetyPlace> search(String keyword){
+        return safetyPlaceRepository.findBybusinessManagePlace(keyword);
     }
 }
