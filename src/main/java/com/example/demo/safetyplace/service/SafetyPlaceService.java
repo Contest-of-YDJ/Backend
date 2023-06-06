@@ -66,8 +66,10 @@ public class SafetyPlaceService {
     }
 
     @Transactional
-    public List<SafetyPlace> search(String keyword){
-        return safetyPlaceRepository.findBybusinessManagePlace(keyword);
+    public List<SafetyPlaceResponseDto> search(String keyword){
+        return safetyPlaceRepository.findBybusinessManagePlace(keyword).stream()
+                .map(SafetyPlaceResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
