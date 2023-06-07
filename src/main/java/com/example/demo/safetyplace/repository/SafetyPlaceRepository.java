@@ -1,8 +1,7 @@
-package com.example.demo.safetyplace.repositroy;
+package com.example.demo.safetyplace.repository;
 
 import com.example.demo.safetyplace.entity.SafetyPlace;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

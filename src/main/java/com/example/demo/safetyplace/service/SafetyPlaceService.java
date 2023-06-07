@@ -1,8 +1,7 @@
 package com.example.demo.safetyplace.service;
 
-import com.example.demo.safetyplace.dto.SafetyPlaceResponseDto;
 import com.example.demo.safetyplace.entity.SafetyPlace;
-import com.example.demo.safetyplace.repositroy.SafetyPlaceRepository;
+import com.example.demo.safetyplace.repository.SafetyPlaceRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.json.simple.JSONArray;
@@ -16,9 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,21 +32,15 @@ public class SafetyPlaceService {
         HttpHeaders httpHeaders = new HttpHeaders();
 
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.set("Authorization",serviceKey);
+        httpHeaders.set("Authorization", serviceKey);
 
         RequestEntity<String> requestEntity = new RequestEntity<>(httpHeaders, HttpMethod.GET, URI.create(apiUrl + parameter));
         ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
 
         String response = responseEntity.getBody();
-        parse(response);
 
-        return response;
-    }
-
-    @Transactional
-    public void parse(String apiData) throws ParseException {
         JSONParser jsonParser = new JSONParser();
-        Object jsonObject = jsonParser.parse(apiData);
+        Object jsonObject = jsonParser.parse(response);
         JSONObject jsonMain = (JSONObject) jsonObject;
         JSONArray jsonArray = (JSONArray) jsonMain.get("data");
 
@@ -61,11 +52,20 @@ public class SafetyPlaceService {
             String businessName = (String) jsonObject1.get("사업장명");
             String permitDay = (String) jsonObject1.get("인정일");
 
-            safetyPlaceRepository.save(new SafetyPlace(factoryName, businessManagePlace, businessName, permitDay));
+            SafetyPlace safetyPlace = SafetyPlace.builder()
+                    .factoryName(factoryName)
+                    .businessManagePlace(businessManagePlace)
+                    .businessName(businessName)
+                    .permitDay(permitDay)
+                    .build();
+
+            safetyPlaceRepository.save(safetyPlace);
         }
+
+        return response;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<SafetyPlace> search(String keyword){
         return safetyPlaceRepository.findBybusinessManagePlace(keyword);
     }
