@@ -71,7 +71,7 @@ public class SafetyPlaceService {
     }
 
     @Transactional(readOnly = true)
-    public List<SafetyPlace> findAllASC() {
-        return safetyPlaceRepository.findAllASC();
+    public List<SafetyPlace> findAllByOrderByIdAsc() {
+        return safetyPlaceRepository.findAllByOrderByIdAsc();
     }
 }

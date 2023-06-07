@@ -23,7 +23,7 @@ public class SafetyPlaceController {
 
     @GetMapping("/open-api")
     public ListResponseData<SafetyPlaceResponseDto> all(){
-        return ListResponseData.of(safetyPlaceService.findAllASC());
+        return ListResponseData.of(safetyPlaceService.findAllByOrderByIdAsc());
     }
 
     @GetMapping("/open-api/save")
