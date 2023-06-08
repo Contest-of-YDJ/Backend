@@ -3,7 +3,6 @@ package com.example.demo.safetyplace.dto;
 import com.example.demo.safetyplace.entity.SafetyPlace;
 
 public class SafetyPlaceResponseDto {
-    private Long id;
     private String factoryName;
     private String businessManagePlace;
     private String businessName;
