@@ -32,7 +32,4 @@ public class SafetyPlace {
         this.businessName = businessName;
         this.permitDay = permitDay;
     }
-
-    @Builder
-    public toSafetyPlaceResponseDto()
 }
