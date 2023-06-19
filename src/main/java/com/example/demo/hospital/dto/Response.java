@@ -1,5 +1,7 @@
 package com.example.demo.hospital.dto;
 
+import com.example.demo.hospital.entity.Hospital;
+import com.example.demo.safetyplace.entity.SafetyPlace;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;

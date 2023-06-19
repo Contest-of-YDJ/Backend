@@ -1,6 +1,7 @@
 package com.example.demo.hospital.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,11 +14,27 @@ public class Hospital {
     private long id;
 
     @Column(length = 100)
-    private String factoryName;
+    private String FCLTY_NM;
 
     @Column(length = 50)
-    private String businessManagePlace;
+    private String ADRES;
 
     @Column(length = 100)
-    private String businessName;
+    private String TELNO;
+
+    @Column(length = 30)
+    private String X;
+
+    @Column(length = 30)
+    private String Y;
+
+    @Builder
+    public Hospital(String FCLTY_NM, String ADRES, String TELNO, String X, String Y){
+        this.FCLTY_NM = FCLTY_NM;
+        this.ADRES = ADRES;
+        this.TELNO = TELNO;
+        this.X = X;
+        this.Y = Y;
+    }
 }
+
