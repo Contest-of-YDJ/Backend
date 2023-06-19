@@ -22,7 +22,6 @@ public class Hospital {
     @Column(length = 100)
     private String TELNO;
 
-
     @Builder
     public Hospital(String FCLTY_NM, String ADRES, String TELNO){
         this.FCLTY_NM = FCLTY_NM;

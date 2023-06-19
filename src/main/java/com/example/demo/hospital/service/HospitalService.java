@@ -1,6 +1,7 @@
 package com.example.demo.hospital.service;
 
 import com.example.demo.hospital.dto.Response;
+import com.example.demo.hospital.dto.ResponseDto;
 import com.example.demo.hospital.entity.Hospital;
 import com.example.demo.hospital.repository.HospitalRepository;
 import com.example.demo.safetyplace.entity.SafetyPlace;
@@ -16,7 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.net.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,10 +30,10 @@ public class HospitalService {
 
     @Transactional
     public String save() throws ParseException, IOException {
-        StringBuilder strBuilder = new StringBuilder("https://safemap.go.kr/openApiService/data/getInlcmdlcnstData.do"); /*URL*/
-        strBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
-        strBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        strBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
+        StringBuilder strBuilder = new StringBuilder("https://safemap.go.kr/openApiService/data/getInlcmdlcnstData.do");
+        strBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey);
+        strBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+        strBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("500", "UTF-8"));
 
         URL url = new URL(strBuilder.toString());
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -80,5 +83,12 @@ public class HospitalService {
         }
 
         return "success";
+    }
+
+    @Transactional(readOnly = true)
+    public List<ResponseDto> findAllByOrderIdAsc() {
+        return hospitalRepository.findAllByOrderByIdAsc().stream()
+                .map(ResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
