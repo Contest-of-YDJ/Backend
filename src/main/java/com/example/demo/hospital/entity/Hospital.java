@@ -22,19 +22,12 @@ public class Hospital {
     @Column(length = 100)
     private String TELNO;
 
-    @Column(length = 30)
-    private String X;
-
-    @Column(length = 30)
-    private String Y;
 
     @Builder
-    public Hospital(String FCLTY_NM, String ADRES, String TELNO, String X, String Y){
+    public Hospital(String FCLTY_NM, String ADRES, String TELNO){
         this.FCLTY_NM = FCLTY_NM;
         this.ADRES = ADRES;
         this.TELNO = TELNO;
-        this.X = X;
-        this.Y = Y;
     }
 }
 

@@ -52,8 +52,6 @@ public class Response {
                 private String FCLTY_NM;
                 private String ADRES;
                 private String TELNO;
-                private String X;
-                private String Y;
             }
         }
     }

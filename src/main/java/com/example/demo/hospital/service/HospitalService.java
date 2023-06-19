@@ -9,6 +9,7 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,22 +22,28 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class HospitalService {
     private final HospitalRepository hospitalRepository;
+    @Value("${config.hospitalsecret}")
+    private String serviceKey;
 
     @Transactional
     public String save() throws ParseException, IOException {
         StringBuilder strBuilder = new StringBuilder("https://safemap.go.kr/openApiService/data/getInlcmdlcnstData.do"); /*URL*/
-        strBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=K7ONP2Y7-K7ON-K7ON-K7ON-K7ONP2Y7KA"); /*Service Key*/
+        strBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
         strBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        strBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("20", "UTF-8")); /*한 페이지 결과 수*/
+        strBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
 
         URL url = new URL(strBuilder.toString());
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-tpye", "application/json");
 
-        System.out.println("Response Code:" + con.getResponseCode());
-        BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        BufferedReader br;
+
+        if(con.getResponseCode() >= 200 && con.getResponseCode() <= 300) {
+            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        } else {
+            br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+        }
 
         StringBuilder sb = new StringBuilder();
         String line;
@@ -47,6 +54,7 @@ public class HospitalService {
 
         br.close();
         con.disconnect();
+
         String xml = sb.toString();
 
         Map<String, Response> result = new HashMap<>();
@@ -57,26 +65,20 @@ public class HospitalService {
             result.put("response",apiResponse);
             Response.Body.Items items = apiResponse.getBody().getItems();
 
-            int n = 0;
             for(Response.Body.Items.Item item : items.getItem()){
-                System.out.println(n);
-
                 Hospital hospital = Hospital.builder()
                         .FCLTY_NM(item.getFCLTY_NM())
                         .ADRES(item.getADRES())
                         .TELNO(item.getTELNO())
-                        .X(item.getX())
-                        .Y(item.getY())
                         .build();
 
                 hospitalRepository.save(hospital);
-                n++;
             }
 
         }catch (JAXBException e){
             e.printStackTrace();
         }
 
-        return "1";
+        return "success";
     }
 }
