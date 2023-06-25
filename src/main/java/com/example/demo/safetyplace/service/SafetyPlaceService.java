@@ -47,10 +47,10 @@ public class SafetyPlaceService {
         for(int i=0; i < jsonArray.size(); i++){
             JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
 
-            String factoryName = (String) jsonObject1.get("공사장명");
-            String businessManagePlace = (String) jsonObject1.get("노동지청명");
-            String businessName = (String) jsonObject1.get("사업장명");
-            String permitDay = (String) jsonObject1.get("인정일");
+            String factoryName = String.valueOf(jsonObject1.get("공사장명"));
+            String businessManagePlace = String.valueOf(jsonObject1.get("노동지청명"));
+            String businessName = String.valueOf(jsonObject1.get("사업장명"));
+            String permitDay = String.valueOf(jsonObject1.get("인정일"));
 
             SafetyPlace safetyPlace = SafetyPlace.builder()
                     .factoryName(factoryName)
