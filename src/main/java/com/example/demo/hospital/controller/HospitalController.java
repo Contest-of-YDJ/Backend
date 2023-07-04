@@ -1,6 +1,6 @@
 package com.example.demo.hospital.controller;
 
-import com.example.demo.hospital.dto.ResponseDto;
+import com.example.demo.hospital.record.ResponseRecord;
 import com.example.demo.hospital.service.HospitalService;
 import com.example.demo.response.ListResponseData;
 import com.example.demo.response.SingleResponseData;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,7 +19,7 @@ public class HospitalController {
     private final HospitalService hospitalService;
 
     @GetMapping("/hospital")
-    public ListResponseData<ResponseDto> all() {
+    public ListResponseData<ResponseRecord> all() {
         return ListResponseData.of(hospitalService.findAllByOrderIdAsc());
     }
 
