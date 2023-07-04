@@ -1,48 +1,27 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
-
-### yml ###
-*-aws.yml
+**/application.properties
+*.idea/
+*.iml/
+*.gradle/
+.idea/
+.gradle/
+.DB_Store
+idea
+build
+/.idea/*
+/out/*
+/.gradle/*
+/.build/*
 
 /src/main/resources/application.yml
-/src/main/resources/config.yml
 
-.gitignore
+# build 폴더의 모든 파일은 무시하되, build/generated-snippets 폴더는 포함
+build/
