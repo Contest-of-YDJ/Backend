@@ -6,7 +6,10 @@ import lombok.*;
 @Entity
 @Getter
 @Builder
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints = {
+        @UniqueConstraint(columnNames =  "email"),
+        @UniqueConstraint(columnNames = "username")
+})
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class User {
@@ -28,10 +31,6 @@ public class User {
 
    @Column
    private String picture;
-
-//   @Enumerated(EnumType.STRING)
-//   @Column
-//   private Role role;
 
    @Builder
    public User(String email, String username, String userid, String password, String picture){

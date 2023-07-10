@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public Long join(JoinRequest joinRequest){
-        return userRepository.save(joinRequest.toEntity(passwordEncoder)).getId();
+        return userRepository.save(joinRequest.toEntity(passwordEncoder,userRepository)).getId();
     }
 
     @Transactional(readOnly = true)

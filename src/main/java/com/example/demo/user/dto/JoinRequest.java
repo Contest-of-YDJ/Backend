@@ -2,6 +2,7 @@ package com.example.demo.user.dto;
 
 //import com.example.demo.user.entity.Role;
 import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.UserRepository;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,13 @@ public class JoinRequest {
         this.password = password;
     }
 
-    public User toEntity(PasswordEncoder passwordEncoder){
+    public User toEntity(PasswordEncoder passwordEncoder, UserRepository userRepository){
+        if (userRepository.existsByEmail(email)){
+            throw new IllegalArgumentException("Email already exists");
+        }
+        if(userRepository.existsByUserid(userid)){
+            throw new IllegalArgumentException("Userid already exists");
+        }
         return User.builder()
                 .username(username)
                 .email(email)
