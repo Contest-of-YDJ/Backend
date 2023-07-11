@@ -1,6 +1,6 @@
 package com.example.demo.board.service;
 
-import com.example.demo.board.dto.BoardListResponse;
+import com.example.demo.board.record.BoardListResponse;
 import com.example.demo.board.entity.Board;
 import com.example.demo.board.repository.BoardRepository;
 import jakarta.persistence.EntityNotFoundException;
