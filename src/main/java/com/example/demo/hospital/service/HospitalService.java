@@ -1,10 +1,9 @@
 package com.example.demo.hospital.service;
 
 import com.example.demo.hospital.dto.Response;
-import com.example.demo.hospital.dto.ResponseDto;
+import com.example.demo.hospital.record.ResponseRecord;
 import com.example.demo.hospital.entity.Hospital;
 import com.example.demo.hospital.repository.HospitalRepository;
-import com.example.demo.safetyplace.entity.SafetyPlace;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
@@ -86,9 +85,9 @@ public class HospitalService {
     }
 
     @Transactional(readOnly = true)
-    public List<ResponseDto> findAllByOrderIdAsc() {
+    public List<ResponseRecord> findAllByOrderIdAsc() {
         return hospitalRepository.findAllByOrderByIdAsc().stream()
-                .map(ResponseDto::new)
+                .map(ResponseRecord::fromEntity)
                 .collect(Collectors.toList());
     }
 }
