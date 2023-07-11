@@ -1,10 +1,10 @@
 package com.example.demo.user.service;
 
-import com.example.demo.user.dto.JoinRequest;
+import com.example.demo.user.record.JoinRecord;
 import com.example.demo.user.entity.User;
 
 
 public interface UserService {
-    Long join(JoinRequest joinRequest);
+    Long join(JoinRecord joinRecord);
     User login(String userId, String password);
 }

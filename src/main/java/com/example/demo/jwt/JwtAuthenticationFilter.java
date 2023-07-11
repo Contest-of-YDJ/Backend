@@ -1,10 +1,9 @@
 package com.example.demo.jwt;
 
-import com.example.demo.user.dto.LoginRequest;
+import com.example.demo.user.record.LoginRecord;
 import com.example.demo.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +25,21 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override //인증 시도
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
         ObjectMapper mapper = new ObjectMapper();
-        LoginRequest loginRequestDto = null;
+        LoginRecord loginRecord = null;
 
         try{
-            loginRequestDto = mapper.readValue(request.getInputStream(), LoginRequest.class);
+            loginRecord = mapper.readValue(request.getInputStream(), LoginRecord.class);
         }catch (Exception e){
             e.printStackTrace();
         }
+        assert loginRecord != null;
         return manager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequestDto.getUserid(), loginRequestDto.getPassword())
+                new UsernamePasswordAuthenticationToken(loginRecord.userid(), loginRecord.password())
         );
     }
 
-    @Override //인증 성공
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException{
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult){
         response.addHeader(
                 HEADER_STRING,
                 TOKEN_PREFIX + createJwtToken1((User) authResult.getPrincipal())

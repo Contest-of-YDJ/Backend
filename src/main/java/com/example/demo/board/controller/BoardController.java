@@ -29,6 +29,7 @@ public class BoardController {
         return SingleResponseData.of(boardService.update(id, request.getTitle(), request.getContent(), request.getTimestamp()));
     }
 
+
     @DeleteMapping("/{id}")
     public SingleResponseData<Long> delete(@PathVariable Long id){
         boardService.delete(id);
