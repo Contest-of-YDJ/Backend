@@ -1,6 +1,6 @@
 package com.example.demo.user.service;
 
-import com.example.demo.user.dto.JoinRequest;
+import com.example.demo.user.record.JoinRecord;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long join(JoinRequest joinRequest){
-        return userRepository.save(joinRequest.toEntity(passwordEncoder)).getId();
+    public Long join(JoinRecord joinRecord) {
+        return userRepository.save(joinRecord.toEntity(passwordEncoder)).getId();
     }
 
     @Transactional(readOnly = true)
@@ -27,7 +27,4 @@ public class UserServiceImpl implements UserService {
             return entity;
         else return null;
     }
-
-
-
 }

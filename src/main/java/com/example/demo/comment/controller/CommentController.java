@@ -20,12 +20,12 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
-    public SingleResponseData<Long> update(@PathVariable Long id, @RequestBody CommentUpdateRequest request){
-        return SingleResponseData.of(commentService.update(id, request.getReply()));
+    public SingleResponseData<Long> update(@PathVariable("id") Long id, @RequestBody CommentUpdateRequest request){
+        return SingleResponseData.of(commentService.update(id, request.reply()));
     }
 
     @DeleteMapping("/{id}")
-    public SingleResponseData<Long> delete(@PathVariable Long id){
+    public SingleResponseData<Long> delete(@PathVariable("id") Long id){
         commentService.delete(id);
         return SingleResponseData.of(id);
     }

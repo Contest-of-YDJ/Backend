@@ -40,6 +40,7 @@ public class CommentService {
                 .orElseThrow(()-> new EntityNotFoundException("해당 댓글이 없습니다. id = "+id));
     }
 
+
     @Transactional(readOnly = true)
     public List<Comment> findAllDesc(Long id){
         return commentRepository.findAllByBoard_IdOrderByModifiedDateDesc(id);

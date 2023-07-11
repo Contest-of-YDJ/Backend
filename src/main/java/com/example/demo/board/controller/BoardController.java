@@ -1,8 +1,8 @@
 package com.example.demo.board.controller;
 
-import com.example.demo.board.dto.BoardListResponse;
-import com.example.demo.board.dto.BoardSaveRequest;
-import com.example.demo.board.dto.BoardUpdateRequest;
+import com.example.demo.board.record.BoardListResponse;
+import com.example.demo.board.record.BoardSaveRequest;
+import com.example.demo.board.record.BoardUpdateRequest;
 import com.example.demo.board.service.BoardService;
 import com.example.demo.response.ListResponseData;
 import com.example.demo.response.SingleResponseData;
@@ -25,12 +25,12 @@ public class BoardController {
     }
 
     @PatchMapping("/{id}")
-    public SingleResponseData<Long> update(@PathVariable Long id, @RequestBody BoardUpdateRequest request){
-        return SingleResponseData.of(boardService.update(id, request.getTitle(), request.getContent(), request.getTimestamp()));
+    public SingleResponseData<Long> update(@PathVariable ("id") Long id, @RequestBody BoardUpdateRequest request){
+        return SingleResponseData.of(boardService.update(id, request.title(), request.content(), request.timestamp()));
     }
 
     @DeleteMapping("/{id}")
-    public SingleResponseData<Long> delete(@PathVariable Long id){
+    public SingleResponseData<Long> delete(@PathVariable("id") Long id) {
         boardService.delete(id);
         return SingleResponseData.of(id);
     }

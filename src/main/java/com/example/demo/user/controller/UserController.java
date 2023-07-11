@@ -2,9 +2,9 @@ package com.example.demo.user.controller;
 
 import com.example.demo.jwt.JwtUtils;
 import com.example.demo.response.SingleResponseData;
-import com.example.demo.user.dto.JoinRequest;
-import com.example.demo.user.dto.LoginRequest;
-import com.example.demo.user.dto.LoginResponse;
+import com.example.demo.user.record.JoinRecord;
+import com.example.demo.user.record.LoginRecord;
+import com.example.demo.user.record.LoginResponseRecord;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,13 +21,13 @@ public class UserController {
     private final UserService signUpService;
 
     @PostMapping("/join")
-    public SingleResponseData<Long> join(@RequestBody JoinRequest joinRequest){
-        return SingleResponseData.of(signUpService.join(joinRequest));
+    public SingleResponseData<Long> join(@RequestBody JoinRecord joinRecord) {
+        return SingleResponseData.of(signUpService.join(joinRecord));
     }
 
     @PostMapping("/login")
-    public SingleResponseData<LoginResponse> login(HttpServletResponse response, @RequestBody LoginRequest loginRequest){
-        User entity = signUpService.login(loginRequest.getUserid(), loginRequest.getPassword());
+    public SingleResponseData<LoginResponseRecord> login(HttpServletResponse response, @RequestBody LoginRecord loginRecord){
+        User entity = signUpService.login(loginRecord.userid(), loginRecord.password());
         if (entity == null){
             throw new IllegalArgumentException("Incorrect Password");
         }
@@ -35,7 +35,7 @@ public class UserController {
         String jwtToken = TOKEN_PREFIX.concat(JwtUtils.createJwtToken1(entity));
         response.addHeader(HEADER_STRING,jwtToken);
 
-        LoginResponse loginResponse = new LoginResponse(entity, jwtToken);
-        return SingleResponseData.of(loginResponse);
+        LoginResponseRecord loginResponseRecord = new LoginResponseRecord(entity, jwtToken);
+        return SingleResponseData.of(loginResponseRecord);
     }
 }
