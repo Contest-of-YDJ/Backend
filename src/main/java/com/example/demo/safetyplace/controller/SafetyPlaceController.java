@@ -2,7 +2,7 @@ package com.example.demo.safetyplace.controller;
 
 import com.example.demo.response.ListResponseData;
 import com.example.demo.response.SingleResponseData;
-import com.example.demo.safetyplace.dto.SafetyPlaceResponseDto;
+import com.example.demo.safetyplace.record.SafetyPlaceResponseDto;
 import com.example.demo.safetyplace.service.SafetyPlaceService;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.ParseException;
