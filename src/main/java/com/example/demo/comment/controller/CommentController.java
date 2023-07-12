@@ -1,7 +1,7 @@
 package com.example.demo.comment.controller;
 
-import com.example.demo.comment.dto.CommentSaveRequest;
-import com.example.demo.comment.dto.CommentUpdateRequest;
+import com.example.demo.comment.record.CommentSaveRequest;
+import com.example.demo.comment.record.CommentUpdateRequest;
 import com.example.demo.comment.service.CommentService;
 import com.example.demo.response.SingleResponseData;
 import lombok.RequiredArgsConstructor;

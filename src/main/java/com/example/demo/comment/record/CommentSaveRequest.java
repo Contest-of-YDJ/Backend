@@ -1,4 +1,4 @@
-package com.example.demo.comment.dto;
+package com.example.demo.comment.record;
 
 import com.example.demo.board.entity.Board;
 import com.example.demo.comment.entity.Comment;

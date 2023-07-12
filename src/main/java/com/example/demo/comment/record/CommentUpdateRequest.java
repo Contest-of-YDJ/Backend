@@ -1,4 +1,4 @@
-package com.example.demo.comment.dto;
+package com.example.demo.comment.record;
 
 public record CommentUpdateRequest(String reply) {
 }
