@@ -1,7 +1,7 @@
 package com.example.demo.jwt;
 
 import com.example.demo.member.record.LoginRecord;
-import com.example.demo.member.entity.Member;
+import com.example.demo.member.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult){
         response.addHeader(
                 HEADER_STRING,
-                TOKEN_PREFIX + createJwtToken1((Member) authResult.getPrincipal())
+                TOKEN_PREFIX + createJwtToken1((User) authResult.getPrincipal())
         );
     }
 

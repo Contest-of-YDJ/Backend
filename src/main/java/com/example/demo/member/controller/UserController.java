@@ -5,8 +5,8 @@ import com.example.demo.response.SingleResponseData;
 import com.example.demo.member.record.JoinRecord;
 import com.example.demo.member.record.LoginRecord;
 import com.example.demo.member.record.LoginResponseRecord;
-import com.example.demo.member.entity.Member;
-import com.example.demo.member.service.MemberService;
+import com.example.demo.member.entity.User;
+import com.example.demo.member.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +16,19 @@ import static com.example.demo.jwt.JwtProperties.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/members")
-public class MemberController {
-    private final MemberService memberService;
+@RequestMapping("/users")
+public class UserController {
+    private final UserService userService;
 
     @PostMapping("/join")
     public SingleResponseData<Long> join(@RequestBody JoinRecord joinRecord) {
-        return SingleResponseData.of(memberService.join(joinRecord));
+        return SingleResponseData.of(userService.join(joinRecord));
     }
 
     @PostMapping("/login")
     public SingleResponseData<LoginResponseRecord> login(HttpServletResponse response, @RequestBody LoginRecord loginRecord){
-        Member entity = memberService.login(loginRecord.userid(), loginRecord.password());
-        if (entity == null){
-            throw new IllegalArgumentException("Incorrect Password");
-        }
+        LoginResponseRecord entity = userService.login(response, loginRecord.userid(), loginRecord.password());
 
-        String jwtToken = TOKEN_PREFIX.concat(JwtUtils.createJwtToken1(entity));
-        response.addHeader(HEADER_STRING,jwtToken);
-
-        LoginResponseRecord loginResponseRecord = new LoginResponseRecord(entity, jwtToken);
-        return SingleResponseData.of(loginResponseRecord);
+        return SingleResponseData.of(entity);
     }
 }

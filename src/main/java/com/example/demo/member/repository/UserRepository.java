@@ -1,14 +1,14 @@
 package com.example.demo.member.repository;
 
-import com.example.demo.member.entity.Member;
+import com.example.demo.member.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member,Long> {
-    Optional<Member> findByUserid(String userid);
+public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<User> findByUserid(String userid);
 
-    Optional<Member> findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     Boolean existsByUserid(String userid);
 

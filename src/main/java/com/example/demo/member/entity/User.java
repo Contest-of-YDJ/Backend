@@ -9,7 +9,7 @@ import lombok.*;
 @Table(name = "member")
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PROTECTED)
-public class Member {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +30,7 @@ public class Member {
    private String picture;
 
    @Builder
-   public Member(String email, String username, String userid, String password, String picture){
+   public User(String email, String username, String userid, String password, String picture){
        this.email = email;
        this.username = username;
        this.userid = userid;

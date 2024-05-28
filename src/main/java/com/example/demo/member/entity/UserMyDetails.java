@@ -12,8 +12,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
-public class MemberDetails implements UserDetails {
-    private final Member member;
+public class UserMyDetails implements UserDetails {
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
@@ -22,11 +22,11 @@ public class MemberDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword(){ return member.getPassword(); }
+    public String getPassword(){ return user.getPassword(); }
 
     @Override
     public String getUsername() {
-        return member.getUsername();
+        return user.getUsername();
     }
     @Override
     public boolean isAccountNonExpired() {
