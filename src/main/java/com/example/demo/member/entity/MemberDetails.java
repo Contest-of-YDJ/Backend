@@ -1,4 +1,4 @@
-package com.example.demo.user.entity;
+package com.example.demo.member.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
-public class MyUserDetails implements UserDetails {
-    private final User user;
+public class MemberDetails implements UserDetails {
+    private final Member member;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
@@ -22,11 +22,11 @@ public class MyUserDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword(){ return user.getPassword(); }
+    public String getPassword(){ return member.getPassword(); }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return member.getUsername();
     }
     @Override
     public boolean isAccountNonExpired() {

@@ -1,7 +1,7 @@
 package com.example.demo.board.entity;
 
 import com.example.demo.audit.AuditEntity;
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class Board extends AuditEntity {
     @Column(length = 500, nullable = false)
     private String title;
     @ManyToOne(fetch=FetchType.EAGER)
-    private User username;
+    private Member memberaName;
 
     @Temporal(TemporalType.DATE)
     private Date timestamp;
@@ -29,9 +29,9 @@ public class Board extends AuditEntity {
 
 
     @Builder
-    public Board(String title, User username, String content, Date timestamp){
+    public Board(String title, Member memberName, String content, Date timestamp){
         this.title = title;
-        this.username = username;
+        this.memberaName = memberName;
         this.content = content;
         this.timestamp = timestamp;
     }

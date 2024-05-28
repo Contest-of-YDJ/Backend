@@ -1,6 +1,6 @@
-package com.example.demo.user.record;
+package com.example.demo.member.record;
 
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.Member;
 
 public record LoginResponseRecord(
         Long id,
@@ -11,7 +11,7 @@ public record LoginResponseRecord(
         String password,
         String jwtToken
 ) {
-    public LoginResponseRecord(User entity, String jwtToken) {
+    public LoginResponseRecord(Member entity, String jwtToken) {
         this(entity.getId(), entity.getUsername(), entity.getEmail(), entity.getUserid(),
                 entity.getPicture(), entity.getPassword(), jwtToken);
     }

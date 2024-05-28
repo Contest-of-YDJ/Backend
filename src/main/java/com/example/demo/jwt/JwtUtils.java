@@ -2,7 +2,7 @@ package com.example.demo.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.Member;
 
 import java.util.Date;
 
@@ -20,11 +20,11 @@ public class JwtUtils {
     }
 
     // 토큰 생성
-    public static String createJwtToken1(User user){
+    public static String createJwtToken1(Member memeber){
         return JWT.create()
-                .withSubject(user.getUsername())
+                .withSubject(memeber.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
-                .withClaim("username", user.getId())
+                .withClaim("username", memeber.getId())
                 .sign(Algorithm.HMAC512(SECRET));
     }
 

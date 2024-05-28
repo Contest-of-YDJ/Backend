@@ -2,7 +2,7 @@ package com.example.demo.comment.entity;
 
 import com.example.demo.audit.AuditEntity;
 import com.example.demo.board.entity.Board;
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,15 +21,15 @@ public class Comment extends AuditEntity {
     private String reply;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
     @Builder
-    public Comment(String reply, User user, Board board){
+    public Comment(String reply, Member member, Board board){
         this.reply = reply;
-        this.user = user;
+        this.member = member;
         this.board = board;
     }
 

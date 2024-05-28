@@ -1,7 +1,7 @@
 package com.example.demo.jwt;
 
-import com.example.demo.user.entity.MyUserDetails;
-import com.example.demo.user.repository.UserRepository;
+import com.example.demo.member.entity.MemberDetails;
+import com.example.demo.member.repository.MemberRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,11 +20,11 @@ import static com.example.demo.jwt.JwtUtils.removePrefix;
 
 //jwt 허가
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository){
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, MemberRepository memberRepository){
         super(authenticationManager);
-        this.userRepository = userRepository;
+        this.memberRepository = memberRepository;
     }
 
     @Override //토큰 정보로 유저의 역할 추출
@@ -36,7 +36,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             String username = JwtUtils.getClaim(jwtToken, "username");
 
             if (StringUtils.hasText(username)){
-                MyUserDetails user = new MyUserDetails(userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("해당 아이디를 가진 유저가 없습니다.")));
+                MemberDetails user = new MemberDetails(memberRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("해당 아이디를 가진 유저가 없습니다.")));
                 SecurityContextHolder.getContext()
                         .setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
             }
