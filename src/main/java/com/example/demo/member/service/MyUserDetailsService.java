@@ -1,8 +1,8 @@
-package com.example.demo.user.service;
+package com.example.demo.member.service;
 
-import com.example.demo.user.entity.MyUserDetails;
-import com.example.demo.user.entity.User;
-import com.example.demo.user.repository.UserRepository;
+import com.example.demo.member.entity.User;
+import com.example.demo.member.entity.UserMyDetails;
+import com.example.demo.member.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         System.out.println("username = "+ username);
-        return new MyUserDetails(
+        return new UserMyDetails(
                 getUsername(username)
                         .orElseThrow(()-> new EntityNotFoundException("Not Found Such User"))
         );

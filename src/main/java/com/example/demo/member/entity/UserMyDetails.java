@@ -1,4 +1,4 @@
-package com.example.demo.user.entity;
+package com.example.demo.member.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Getter
-public class MyUserDetails implements UserDetails {
+public class UserMyDetails implements UserDetails {
     private final User user;
 
     @Override

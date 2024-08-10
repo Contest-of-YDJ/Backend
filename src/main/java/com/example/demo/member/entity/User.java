@@ -1,4 +1,4 @@
-package com.example.demo.user.entity;
+package com.example.demo.member.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,7 @@ import lombok.*;
 @Entity
 @Getter
 @Builder
-@Table(name = "user")
+@Table(name = "member")
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class User {

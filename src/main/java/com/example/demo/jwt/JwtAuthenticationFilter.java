@@ -1,7 +1,7 @@
 package com.example.demo.jwt;
 
-import com.example.demo.user.record.LoginRecord;
-import com.example.demo.user.entity.User;
+import com.example.demo.member.record.LoginRecord;
+import com.example.demo.member.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,8 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.io.IOException;
 
 import static com.example.demo.jwt.JwtProperties.*;
 import static com.example.demo.jwt.JwtUtils.createJwtToken1;

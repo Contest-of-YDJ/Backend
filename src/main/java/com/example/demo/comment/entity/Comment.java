@@ -2,7 +2,7 @@ package com.example.demo.comment.entity;
 
 import com.example.demo.audit.AuditEntity;
 import com.example.demo.board.entity.Board;
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.User;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

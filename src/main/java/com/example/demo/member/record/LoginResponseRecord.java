@@ -1,6 +1,6 @@
-package com.example.demo.user.record;
+package com.example.demo.member.record;
 
-import com.example.demo.user.entity.User;
+import com.example.demo.member.entity.User;
 
 public record LoginResponseRecord(
         Long id,

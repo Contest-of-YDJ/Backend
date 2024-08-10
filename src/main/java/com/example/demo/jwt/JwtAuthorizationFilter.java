@@ -1,7 +1,7 @@
 package com.example.demo.jwt;
 
-import com.example.demo.user.entity.MyUserDetails;
-import com.example.demo.user.repository.UserRepository;
+import com.example.demo.member.entity.UserMyDetails;
+import com.example.demo.member.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             String username = JwtUtils.getClaim(jwtToken, "username");
 
             if (StringUtils.hasText(username)){
-                MyUserDetails user = new MyUserDetails(userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("해당 아이디를 가진 유저가 없습니다.")));
+                UserMyDetails user = new UserMyDetails(userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("해당 아이디를 가진 유저가 없습니다.")));
                 SecurityContextHolder.getContext()
                         .setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
             }

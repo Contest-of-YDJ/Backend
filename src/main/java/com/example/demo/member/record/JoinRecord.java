@@ -1,7 +1,9 @@
-package com.example.demo.user.record;
+package com.example.demo.member.record;
 
-import com.example.demo.user.entity.User;
-import com.example.demo.user.repository.UserRepository;
+import com.example.demo.exception.ExceptionCode;
+import com.example.demo.member.entity.User;
+import com.example.demo.member.repository.UserRepository;
+import com.example.demo.member.service.BusinessLogicException;
 import lombok.Builder;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,10 +17,12 @@ public record JoinRecord(String userid, String email, String username, String pa
 
     public User toEntity(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         if (userRepository.existsByEmail(email)){
-            throw new IllegalArgumentException("Email already exists");
+            System.out.println("이메일 충돌");
+            throw new BusinessLogicException(ExceptionCode.MEMBER_CONFLICT);
         }
         if(userRepository.existsByUserid(userid)){
-            throw new IllegalArgumentException("Userid already exists");
+            System.out.println("유저 id 충돌");
+            throw new BusinessLogicException(ExceptionCode.MEMBER_CONFLICT);
         }
         return User.builder()
                 .username(username)
