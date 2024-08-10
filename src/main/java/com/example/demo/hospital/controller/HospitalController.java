@@ -28,4 +28,5 @@ public class HospitalController {
     public SingleResponseData<Long> save() throws ParseException, IOException {
         return SingleResponseData.of(hospitalService.save());
     }
+
 }
